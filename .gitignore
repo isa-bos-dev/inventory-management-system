@@ -1,0 +1,27 @@
+## Visual Studio / .NET
+.vs/
+[Bb]in/
+[Oo]bj/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+## Node & Angular
+node_modules/
+dist/
+.angular/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+
+## Environment files
+.env
+.env.local
+
+## OS generated
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+.DS_Store
