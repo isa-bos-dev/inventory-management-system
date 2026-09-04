@@ -1,12 +1,18 @@
-﻿using InventoryWebApi.Data.Enums;
-
-namespace InventoryWebApi.DTOs
+﻿namespace InventoryWebApi.DTOs
 {
     #region Requests
-    // Line item payload for an inventory movement
-    public record CreateMovementDetailRequest(int productId,int quantity);
+    // Request payload for creating a new inventory movement (entry or exit)
+    public record CreateMovementRequest(
+        int movementTypeValue,
+        DateOnly movementDate,
+        string observation,
+        IEnumerable<CreateMovementDetailRequest> details
+        );
 
-    // Query parameters for server-side paginated inventory listing
+    // Request payload for creating a single movement detail line
+    public record CreateMovementDetailRequest(int productId, int quantity);
+
+    // Request payload for querying inventory with pagination parameters
     public record QueryInventoryRequest(int page,int pageSize);
     #endregion
 
@@ -23,7 +29,7 @@ namespace InventoryWebApi.DTOs
 
     // Paginated envelope for inventory listing
     public record GetQueryInventoryResponse(
-        List<GetInventoryResponse> Items,
+        List<GetInventoryResponse> items,
         int page,
         int pageSize,
         int totalItems
