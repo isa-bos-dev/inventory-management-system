@@ -1,6 +1,6 @@
 @InventoryWebApi_HostAddress = http://localhost:5251
 
-### 1. Create a new product
+### Create a new product
 POST {{InventoryWebApi_HostAddress}}/api/product
 Content-Type: application/json
 
@@ -10,10 +10,36 @@ Content-Type: application/json
   "minStock": 5
 }
 
-###
-
-### 2. Retrieve all products (without filter)
-@searchTerm=mon
+### Retrieve all products (without filter)
+@searchTerm=pr
 GET {{InventoryWebApi_HostAddress}}/api/product?searchTerm={{searchTerm}}
 
-###
+### Register an entry movement (Stock replenishment)
+POST {{InventoryWebApi_HostAddress}}/api/inventory
+Content-Type: application/json
+
+{
+  "movementTypeValue": 1,
+  "movementDate": "2026-09-04",
+  "observation": "Purchase invoice ref-001",
+  "details": [
+    {
+      "productId": 1,
+      "quantity": 10
+    },
+    {
+      "productId": 2,
+      "quantity": 1
+    }
+  ]
+}
+
+### Verify low stock alert products
+GET {{InventoryWebApi_HostAddress}}/api/inventory/GetProductReport
+
+###  Query paginated inventory list
+GET {{InventoryWebApi_HostAddress}}/api/inventory?page=1&pageSize=5
+
+### Query daily movement chart report (Last 5 days)
+GET {{InventoryWebApi_HostAddress}}/api/inventory/GetMovementReport
+
