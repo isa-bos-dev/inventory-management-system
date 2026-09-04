@@ -1,3 +1,4 @@
+using InventoryWebApi.Business;
 using InventoryWebApi.Data;
 using Microsoft.EntityFrameworkCore;
 
@@ -11,6 +12,9 @@ builder.Services.AddControllers();
 var connection = builder.Configuration.GetConnectionString("DefaultConnection");
 // Use the connection string to configure the DbContext for SQL Server
 builder.Services.AddDbContext<AppDbContext>(options => options.UseSqlServer(connection));
+
+// Register business services for dependency injection
+builder.Services.AddScoped<ProductBusiness>();
 
 var app = builder.Build();
 
