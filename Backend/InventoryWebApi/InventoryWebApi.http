@@ -1,6 +1,19 @@
 @InventoryWebApi_HostAddress = http://localhost:5251
 
-GET {{InventoryWebApi_HostAddress}}/weatherforecast/
-Accept: application/json
+### 1. Create a new product
+POST {{InventoryWebApi_HostAddress}}/api/product
+Content-Type: application/json
+
+{
+  "code": "PR00002",
+  "name": "Monitor HD AOC",
+  "minStock": 5
+}
+
+###
+
+### 2. Retrieve all products (without filter)
+@searchTerm=mon
+GET {{InventoryWebApi_HostAddress}}/api/product?searchTerm={{searchTerm}}
 
 ###
