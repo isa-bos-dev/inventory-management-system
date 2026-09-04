@@ -15,6 +15,8 @@ builder.Services.AddDbContext<AppDbContext>(options => options.UseSqlServer(conn
 
 // Register business services for dependency injection
 builder.Services.AddScoped<ProductBusiness>();
+// Register inventory business service for dependency injection
+builder.Services.AddScoped<InventoryBusiness>();
 
 var app = builder.Build();
 
