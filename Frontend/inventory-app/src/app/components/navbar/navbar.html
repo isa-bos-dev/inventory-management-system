@@ -9,9 +9,9 @@
         
         <div class="collapse navbar-collapse" [ngbCollapse]="isMenuCollapsed()">
             <div class="navbar-nav">
-                <a class="nav-link">Dashboard</a>
-                <a class="nav-link" >Movement</a>
-                <a class="nav-link">Inventory</a>
+                <a class="nav-link" routerLink="dashboard" routerLinkActive="active">Dashboard</a>
+                <a class="nav-link" routerLink="newmovement" routerLinkActive="active">Movement</a>
+                <a class="nav-link" routerLink="inventory" routerLinkActive="active">Inventory</a>
             </div>
         </div>
 

@@ -1,9 +1,10 @@
 import { Component, signal } from '@angular/core';
+import { RouterLink, RouterLinkActive } from '@angular/router';
 import { NgbCollapseModule } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
-  imports: [NgbCollapseModule],
   selector: 'app-navbar',
+  imports: [NgbCollapseModule, RouterLink, RouterLinkActive],
   styleUrl: './navbar.css',
   templateUrl: './navbar.html',
 })
