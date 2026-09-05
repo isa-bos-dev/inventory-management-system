@@ -1,0 +1,19 @@
+<nav class="navbar navbar-expand-lg bg-body-tertiary">
+    <div class="container-fluid">
+
+        <a class="navbar-brand" href="#">Inventory</a>
+
+        <button class="navbar-toggler" type="button" (click)="this.toggleMenu()">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        
+        <div class="collapse navbar-collapse" [ngbCollapse]="isMenuCollapsed()">
+            <div class="navbar-nav">
+                <a class="nav-link">Dashboard</a>
+                <a class="nav-link" >Movement</a>
+                <a class="nav-link">Inventory</a>
+            </div>
+        </div>
+
+    </div>
+</nav>
