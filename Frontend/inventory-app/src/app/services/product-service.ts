@@ -4,7 +4,7 @@ import { environment } from '../../environments/environment.development';
 import { CreateProductRequest } from '../interfaces/create-product-request';
 import { Observable } from 'rxjs';
 import { ApiResponse } from '../interfaces/api-response';
-import { GetProductReportResponse } from '../interfaces/get-product-report-response';
+import { GetProductResponse } from '../interfaces/get-product-response';
 
 @Service()
 export class ProductService {
@@ -20,8 +20,8 @@ export class ProductService {
     }
 
     // GET: api/product?searchTerm=term - Retrieve products with optional filter
-    get(searchTerm: string): Observable<ApiResponse<GetProductReportResponse[]>> {
-        return this.http.get<ApiResponse<GetProductReportResponse[]>>(
+    get(searchTerm: string): Observable<ApiResponse<GetProductResponse[]>> {
+        return this.http.get<ApiResponse<GetProductResponse[]>>(
             `${this.endpoint}?searchTerm=${searchTerm}`);
     }
 }

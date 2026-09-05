@@ -1,1 +1,92 @@
-<p>new-movement-page works!</p>
+<div class="container">
+    <div class="row mt-4">
+        <div class="col-12">
+            <div class="cardd">
+                <ul ngbNav #nav="ngbNav" [(activeId)]="tabActive" class="nav-tabs">
+                    <li [ngbNavItem]="1">
+                        <button ngbNavLink>Movement</button>
+                        <ng-template ngbNavContent>
+                            <div class="row g-4">
+                                <div class="col-sm-6">
+                                    <label class="form-label">Movement Type</label>
+                                    <select class="form-select" [formField]="movementForm.type">
+                                        <option value="1">Entry</option>
+                                        <option value="2">Exit</option>
+                                    </select>
+                                </div>
+                                <div class="col-sm-6">
+                                    <label class="form-label">Date</label>
+                                    <input type="date" class="form-control" [formField]="movementForm.date">
+                                </div>
+                                <div class="col-sm-12">
+                                    <label class="form-label">Observation:</label>
+                                    <textarea class="form-control" [formField]="movementForm.observation"></textarea>
+                                </div>
+                                <div class="col-sm-12">
+                                    <div class="d-flex justify-content-end">
+                                        <button class="btn btn-outline-dark" (click)="nav.select(2)" >Next</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </ng-template>
+                    </li>
+                    <li [ngbNavItem]="2">
+                        <button ngbNavLink>Movement Details</button>
+                        <ng-template ngbNavContent>
+                            <div class="row g-4">
+                                <div class="col-sm-7">
+                                    <input type="text" class="form-control" placeholder="Search product"
+                                        [ngbTypeahead]="search" [(ngModel)]="productSelected"
+                                        [resultFormatter]="formatter" [inputFormatter]="formatter">
+                                </div>
+                                <div class="col-sm-2">
+                                    <input type="number" class="form-control" placeholder="Quantity" 
+                                    [(ngModel)]="productQuantity">
+                                </div>
+
+                                <div class="col-sm-3">
+                                    <div class="d-grid">
+                                        <button class="btn btn-primary" (click)="add()">Add product</button>
+                                    </div>
+                                </div>
+                                <div class="col-sm-12">
+                                    <table class="table">
+                                        <thead>
+                                            <tr>
+                                                <td>Product</td>
+                                                <td>Quantity</td>
+                                                <td>Action</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @for(product of movementForm.detail; track $index){
+                                            <tr>
+                                                <td>{{product.name().value()}}</td>
+                                                <td>{{product.quantity().value()}}</td>
+                                                <td><button class="btn btn-danger btn-sm ms-1" (click)="delete(product.id().value())">Delete</button></td>
+                                            </tr>
+                                            }@empty{
+                                            <tr>
+                                                <td colspan="3" class="text-center text-danger">No products added</td>
+                                            </tr>
+                                            }
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="col-sm-12">
+                                <div class="d-flex justify-content-between">
+                                    <button class="btn btn-outline-dark" (click)="nav.select(1)" >Back</button>
+                                    <button class="btn btn-outline-dark" (click)="save()" >Save</button>
+                                </div>
+                            </div>
+                        </ng-template>
+                    </li>
+
+                </ul>
+                <div [ngbNavOutlet]="nav" class="p-4 border border-top-0"></div>
+
+            </div>
+        </div>
+    </div>
+</div>
