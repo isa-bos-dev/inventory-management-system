@@ -1,0 +1,24 @@
+<div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">New Product</h4>
+    <button type="button" class="btn-close" aria-label="Close" (click)="activeModal.dismiss()"></button>
+</div>
+<div class="modal-body">
+    <form>
+        <div class="mb-3">
+            <label class="form-label">Code:</label>
+            <input type="text" class="form-control" [formField]="productForm.code">
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Name:</label>
+            <input type="text" class="form-control" [formField]="productForm.name" >
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Minimum Stock:</label>
+            <input type="number" class="form-control" [formField]="productForm.minStock" >
+        </div>
+    </form>
+</div>
+<div class="modal-footer">
+    <button type="button" class="btn btn-outline-secondary" (click)="activeModal.close()">Close</button>
+    <button type="button" class="btn btn-outline-success" (click)="save()">Save</button>
+</div>

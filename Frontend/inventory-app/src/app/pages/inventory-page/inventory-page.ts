@@ -2,11 +2,12 @@ import { Component, effect, inject, signal } from '@angular/core';
 import { GetInventoryResponse } from '../../interfaces/get-inventory-response';
 import { InventoryService } from '../../services/inventory-service';
 import { GetQueryInventoryRequest } from '../../interfaces/get-query-inventory-request';
-import { NgbPagination } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModal, NgbPagination } from '@ng-bootstrap/ng-bootstrap';
+import { ProductModal } from '../../components/product-modal/product-modal';
 
 @Component({
-  imports: [NgbPagination],
   selector: 'app-inventory-page',
+  imports: [NgbPagination],
   styleUrl: './inventory-page.css',
   templateUrl: './inventory-page.html',
 })
@@ -20,10 +21,16 @@ export class InventoryPage {
 
    // Inject HTTP service
   private inventoryService = inject(InventoryService)
+  private modalService = inject(NgbModal);
+
+  private trigger = signal(false)
 
   constructor() {
     // Reactive effect triggered automatically whenever currentPage or pageSize are read
     effect(() => {
+
+      this.trigger();
+
       const query: GetQueryInventoryRequest = {
         page: this.currentPage(),
         pageSize: this.pageSize()
@@ -41,5 +48,19 @@ export class InventoryPage {
         },
       });
     });
+  }
+
+  // Open product creation modal
+  open(): void {
+    this.modalService.open(ProductModal)
+    // Subscribe to modal resolution
+    .result.then(
+      (result) => {
+        if (result === 'save') {
+          console.log('product saved')
+          this.trigger.update(v => !v);
+      }
+    }
+    )
   }
 }
