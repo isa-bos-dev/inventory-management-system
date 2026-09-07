@@ -23,8 +23,8 @@ export class InventoryService {
   }
 
   // GET: api/inventory?page=X&pageSize=Y - Retrieve paginated inventory list
-  get(request: GetQueryInventoryRequest): Observable<ApiResponse<GetQueryInventoryResponse[]>> {
-    return this.http.get<ApiResponse<GetQueryInventoryResponse[]>>(
+  get(request: GetQueryInventoryRequest): Observable<ApiResponse<GetQueryInventoryResponse>> {
+    return this.http.get<ApiResponse<GetQueryInventoryResponse>>(
       `${this.endpoint}?page=${request.page}&pageSize=${request.pageSize}`
     );
   }
